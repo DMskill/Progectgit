@@ -21,12 +21,13 @@ jobs:
           port: ${{ secrets.SSH_PORT || 22 }}
           script: |
             set -e
-            REPO_DIR=${{ secrets.REPO_DIR || '/srv/prop2p' }}
+            REPO_DIR=${{ secrets.REPO_DIR || '/opt/prop2p' }}
+            REPO_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
             if [ ! -d "$REPO_DIR/.git" ]; then
-              echo "ERROR: Repo directory $REPO_DIR not found or not a git repo. Clone it once on the server:"
-              echo "  sudo mkdir -p $REPO_DIR && sudo chown $USER:$USER $REPO_DIR"
-              echo "  git clone $GITHUB_SERVER_URL/$GITHUB_REPOSITORY $REPO_DIR"
-              exit 1
+              echo "Repo not found at $REPO_DIR, cloning..."
+              sudo mkdir -p "$REPO_DIR"
+              sudo chown "$USER:$USER" "$REPO_DIR"
+              git clone "$REPO_URL" "$REPO_DIR"
             fi
             cd "$REPO_DIR"
             git fetch --all --prune
