@@ -63,12 +63,12 @@ function Footer({ locale }: { locale: string }) {
 
 export default async function LocaleLayout({
     children,
-    params
+    params,
 }: {
     children: ReactNode;
-    params: Promise<{ locale: string }>;
+    params: { locale: string };
 }) {
-    const { locale } = await params;
+    const { locale } = params;
 
     let messages;
     try {
