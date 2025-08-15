@@ -8,8 +8,8 @@ import Link from 'next/link';
 const SITE = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 const LOCALES = ['ru', 'en', 'zh', 'es', 'de'];
 
-export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
-    const { locale } = params;
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+    const { locale } = await params;
     let messages: { brand?: string; hero?: { title?: string; subtitle?: string } };
     try {
         messages = (await import(`../../messages/${locale}.json`)).default;
