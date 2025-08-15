@@ -22,7 +22,7 @@ jobs:
           script: |
             set -e
             REPO_DIR=${{ secrets.REPO_DIR || '/opt/prop2p' }}
-            REPO_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY"
+            REPO_URL='${{ github.server_url }}/${{ github.repository }}'
             if [ ! -d "$REPO_DIR/.git" ]; then
               echo "Repo not found at $REPO_DIR, cloning..."
               sudo mkdir -p "$REPO_DIR"
