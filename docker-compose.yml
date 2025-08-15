@@ -1,0 +1,56 @@
+services:
+  db:
+    image: postgres:15
+    container_name: prop2p-db
+    restart: always
+    environment:
+      POSTGRES_USER: prop2p
+      POSTGRES_PASSWORD: prop2p
+      POSTGRES_DB: prop2p
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend
+    container_name: prop2p-backend
+    restart: unless-stopped
+    command: sh -c "npm install && npx prisma generate && npx prisma migrate deploy && npm run start:dev"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    environment:
+      DATABASE_URL: postgres://prop2p:prop2p@db:5432/prop2p
+      NODE_ENV: development
+      PORT: 3001
+      ADMIN_EMAILS: d.mokronos@gmail.com,dmokronos@inbox.ru,pro2p2manager@gmail.com
+      MAIL_FROM: "ProP2P <no-reply@pro2p2.xyz>"
+      SMTP_HOST: email-smtp.eu-central-1.amazonaws.com
+      SMTP_PORT: "587"
+      SMTP_SECURE: "false"
+      SMTP_USER: "<AKIAQB7I6UA5IHYQI23W>"
+      SMTP_PASS: "<BHGYugaxf9s6Hmb/d+DJc6k4+6PdCiSJ9DttXO5/vhzi>"
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    container_name: prop2p-frontend
+    restart: unless-stopped
+    command: npm run dev
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      NEXT_PUBLIC_API_URL: /api
+      NODE_ENV: development
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:

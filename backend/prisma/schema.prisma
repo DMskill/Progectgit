@@ -1,0 +1,99 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TradeAction {
+  BUY
+  SELL
+}
+
+enum PaymentMethod {
+  CASH
+  CRYPTO
+  BANK_TRANSFER
+  GOODS
+}
+
+enum ListingStatus {
+  ACTIVE
+  ARCHIVED
+}
+
+model User {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  passwordHash  String?
+  name          String?
+  nickname      String?  @unique
+  verified      Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  listings      Listing[]
+  tokens        VerificationToken[]
+  emailChanges  EmailChangeToken[]
+}
+
+model Listing {
+  id           String          @id @default(cuid())
+  countryCode  String          // ISO 3166-1 alpha-2, например "RU"
+  countryName  String
+  regionCity   String
+  action       TradeAction
+  cryptoSymbol String          // BTC, USDT и т.д.
+  amountTotal  Decimal         @db.Decimal(38, 18)
+  minTrade     Decimal         @db.Decimal(38, 18)
+  receiveType  PaymentMethod
+  receiveTypes PaymentMethod[] @default([])
+  receiveAsset String?         // Например: USDT, RUB, GOODS
+  receiveAmount Decimal?       @db.Decimal(38, 18)
+  contact      String?         // Публичный контакт для связи
+  sellerId     String
+  seller       User            @relation(fields: [sellerId], references: [id])
+  rating       Float           @default(0)
+  description  String?
+  status       ListingStatus   @default(ACTIVE)
+  expiresAt    DateTime       @default(now())
+  archivedAt   DateTime?
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+
+  @@index([status, expiresAt])
+  @@index([sellerId, status])
+  @@index([countryCode, action])
+  @@index([regionCity])
+  @@index([cryptoSymbol])
+  @@index([receiveType])
+  @@index([createdAt])
+}
+
+model VerificationToken {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  token     String   @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+}
+
+model EmailChangeToken {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  newEmail  String
+  token     String   @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+}

@@ -1,0 +1,142 @@
+{
+    "hello": "你好世界!",
+    "brand": "ProP2P",
+    "postAd": "发布广告",
+    "signIn": "登录",
+    "signin": "登录",
+    "signUp": "注册",
+    "signup": "注册",
+    "email": "邮箱",
+    "password": "密码",
+    "searchPlaceholder": "搜索广告、资产、卖家…",
+    "search": "搜索",
+    "colCountry": "国家",
+    "colCity": "城市",
+    "colAction": "操作",
+    "colBuySell": "购买/出售",
+    "colDescription": "备注",
+    "colCrypto": "加密货币",
+    "colAmount": "数量",
+    "colMinTrade": "最小交易",
+    "colReceive": "收取",
+    "colMethod": "方式",
+    "colSeller": "卖家",
+    "colContact": "联系",
+    "colRating": "评分",
+    "colDate": "日期",
+    "empty": "暂无广告",
+    "action": {
+        "buy": "购买",
+        "sell": "出售"
+    },
+    "method": {
+        "cash": "现金",
+        "crypto": "加密货币",
+        "bank": "银行转账",
+        "goods": "商品"
+    },
+    "colActions": "操作",
+    "edit": "编辑",
+    "delete": "删除",
+    "profileTitle": "个人资料",
+    "myListings": "我的广告",
+    "logout": "退出",
+    "toListings": "返回列表",
+    "daysCount": "{count, plural, other {# 天}}",
+    "archive": "存档",
+    "repost": "重新发布",
+    "colExpires": "剩余",
+    "tabActive": "活动",
+    "tabArchived": "存档",
+    "profile": {
+        "namePh": "姓名",
+        "nickPh": "昵称",
+        "saveProfile": "保存资料",
+        "currentPassPh": "当前密码",
+        "newPassPh": "新密码",
+        "changePass": "修改密码",
+        "newEmailPh": "新邮箱",
+        "changeEmail": "修改邮箱",
+        "updated": "资料已更新",
+        "mailSent": "确认邮件已发送"
+    },
+    "filter": {
+        "country": "国家",
+        "city": "城市",
+        "crypto": "加密货币",
+        "actionAny": "购买/出售",
+        "seller": "卖家",
+        "apply": "应用",
+        "reset": "重置",
+        "method": "付款方式"
+    },
+    "modal": {
+        "title": "创建广告",
+        "editTitle": "编辑广告",
+        "countryCodePh": "国家代码 (RU)",
+        "countryPh": "国家",
+        "regionPh": "地区/城市",
+        "cryptoPh": "加密货币 (BTC/USDT)",
+        "amountTotalPh": "总数量",
+        "minTradePh": "最小交易",
+        "receiveType": {
+            "cash": "现金",
+            "crypto": "加密货币",
+            "bank": "银行转账",
+            "goods": "商品"
+        },
+        "action": {
+            "buy": "购买",
+            "sell": "出售"
+        },
+        "actionSelect": "选择操作",
+        "receiveTypeSelect": "选择方式",
+        "receiveAssetPh": "收取资产/货币/商品",
+        "receiveAmountPh": "收取数量",
+        "sellerEmailPh": "联系方式",
+        "sellerNamePh": "姓名",
+        "descriptionPh": "备注",
+        "commentPh": "备注（最多500个字符）",
+        "cancel": "取消",
+        "save": "保存",
+        "error": "创建失败"
+    },
+    "hero": {
+        "title": "就在您身边的透明 P2P 交易",
+        "subtitle": "与附近的人直接交换加密货币——无需中介、无隐藏条款。快捷、简单且可靠。"
+    },
+    "blocks": {
+        "howWorks": {
+            "title": "如何运作？",
+            "find": "寻找交易方：应用筛选 → 通过邮箱/聊天联系 → 确认细节。",
+            "post": "发布广告：登录 → 创建广告 → 接收反馈。",
+            "tip": "提示：先确认到账，不要向陌生人预付。"
+        },
+        "safety": {
+            "title": "安全吗？",
+            "short": "ProP2P 是信息板：交易由用户直接完成。安全取决于你的操作。请在人多场所见面或视频核验，避免预付，链上/银行确认到账，切勿泄露助记词。",
+            "more": "完整安全提示"
+        },
+        "contact": {
+            "title": "如何联系卖家/买家？",
+            "text": "联系方式（邮箱/聊天）在广告中，登录后可见。请先沟通并确认细节。"
+        },
+        "fees": {
+            "title": "平台费用",
+            "text": "成交费？发布/续费？取消限制的订阅？统统没有！与人直接自由交换加密货币。"
+        }
+    },
+    "list": {
+        "countRange": "显示 {from}–{to} / 共 {total}"
+    },
+    "safetyModal": {
+        "title": "安全提示",
+        "item1": "在人多的地方见面，或通过视频核验身份。",
+        "item2": "不要向陌生人预付。可分批交易。",
+        "item3": "在交付现金/加密前，核对网络/地址并确认链上/银行到账。",
+        "item4": "仅使用广告中的联系方式沟通，忽略外部链接和请求。",
+        "item5": "切勿泄露私钥、助记词或验证码。",
+        "item6": "将约定写明：时间、金额、汇率、地点。",
+        "item7": "如有疑虑，立即终止交易。"
+    }
+}
