@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState, useCallback, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import Header from '@/components/Header';
 import ListingTable from '@/components/ListingTable';
-import { getListingsPaged, ListingDto } from '@/lib/api';
+import { getListings, ListingDto } from '@/lib/api';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import CountrySelect from '@/components/CountrySelect';
 import Link from 'next/link';
@@ -37,7 +37,10 @@ export default function Home() {
     const PER_PAGE = 50;
 
     const totalPages = useMemo(() => Math.max(1, Math.ceil(total / PER_PAGE)), [total]);
-    const pagedItems = items; // сервер уже отдаёт нужную страницу
+    const pagedItems = useMemo(() => {
+        const start = (page - 1) * PER_PAGE;
+        return items.slice(start, start + PER_PAGE);
+    }, [items, page]);
 
     const initialFilters = useMemo<Filters>(() => {
         const rawAction = searchParams.get('action') ?? '';
@@ -80,10 +83,11 @@ export default function Home() {
     const load = useCallback(async (f?: Filters, pageOverride?: number) => {
         setLoading(true);
         try {
-            const currentPage = Math.max(1, Number(pageOverride ?? page) || 1);
-            const data = await getListingsPaged({ ...(buildParams(f ?? filters)), page: currentPage, limit: PER_PAGE });
-            setItems(data.items);
-            setTotal(data.total);
+            const all = await getListings(buildParams(f ?? filters));
+            setItems(all);
+            setTotal(all.length);
+            const targetPage = Math.max(1, Number(pageOverride ?? page) || 1);
+            setPage(targetPage);
         } catch {
             setItems([]);
             setTotal(0);
@@ -93,7 +97,6 @@ export default function Home() {
     }, [filters, page]);
 
     const applyWith = (f: Filters) => {
-        // Применяем без полной навигации
         const pageNumber = 1;
         setPage(pageNumber);
         syncUrl(f, pageNumber);
@@ -103,7 +106,6 @@ export default function Home() {
     useEffect(() => {
         if (didInitRef.current) return;
         didInitRef.current = true;
-        // Нормализуем фильтры и грузим первую страницу
         const normalized: Filters = initialFilters;
         setFilters(normalized);
         setPage(1);
@@ -214,25 +216,15 @@ export default function Home() {
                 </div>
                 {loading ? <div className="opacity-60">{t('loading')}</div> : <>
                     <ListingTable items={pagedItems} onEdited={handleEdited} onDeleted={handleDeleted} showExpires={false} sellerHeader={t('colContact') as unknown as string} />
-                    {/* Count range */}
                     {total > 0 && (
                         <div className="w-full max-w-6xl px-4 mt-2 text-sm opacity-70">
                             {t('list.countRange', { from: Math.min((page - 1) * PER_PAGE + 1, total), to: Math.min(total, page * PER_PAGE), total })}
                         </div>
                     )}
-                    {/* Пагинация */}
                     {total > PER_PAGE && (
                         <nav className="w-full max-w-6xl px-4 mt-4 flex items-center justify-center select-none" data-testid="pagination" aria-label="Pagination">
                             <div className="flex items-center gap-2">
-                                <button
-                                    type="button"
-                                    className="px-2 py-1 rounded border hover:bg-gray-50 dark:hover:bg-gray-900 disabled:opacity-40"
-                                    disabled={page <= 1}
-                                    onClick={() => { const next = Math.max(1, page - 1); setPage(next); syncUrl(filters, next); load(filters, next); }}
-                                    aria-label="Prev"
-                                >
-                                    ‹
-                                </button>
+                                <button type="button" className="px-2 py-1 rounded border hover:bg-gray-50 dark:hover:bg-gray-900 disabled:opacity-40" disabled={page <= 1} onClick={() => { const next = Math.max(1, page - 1); setPage(next); syncUrl(filters, next); load(filters, next); }} aria-label="Prev">‹</button>
                                 {(() => {
                                     const pages: (number | string)[] = [];
                                     const add = (v: number | string) => pages.push(v);
@@ -251,33 +243,19 @@ export default function Home() {
                                             {pages.map((p, idx) => typeof p === 'string' ? (
                                                 <span key={`e-${idx}`} className="px-2 text-gray-500">{p}</span>
                                             ) : (
-                                                <button
-                                                    key={p}
-                                                    type="button"
-                                                    onClick={() => { setPage(p); syncUrl(filters, p); load(filters, p); }}
-                                                    className={`${p === page ? 'bg-blue-600 text-white' : 'border hover:bg-gray-50 dark:hover:bg-gray-900'} px-3 py-1 rounded`}
-                                                >
+                                                <button key={p} type="button" onClick={() => { setPage(p); syncUrl(filters, p); load(filters, p); }} className={`${p === page ? 'bg-blue-600 text-white' : 'border hover:bg-gray-50 dark:hover:bg-gray-900'} px-3 py-1 rounded`}>
                                                     {p}
                                                 </button>
                                             )}
                                         </>
                                     );
                                 })()}
-                                <button
-                                    type="button"
-                                    className="px-2 py-1 rounded border hover:bg-gray-50 dark:hover:bg-gray-900 disabled:opacity-40"
-                                    disabled={page >= totalPages}
-                                    onClick={() => { const next = Math.min(totalPages, page + 1); setPage(next); syncUrl(filters, next); load(filters, next); }}
-                                    aria-label="Next"
-                                >
-                                    ›
-                                </button>
+                                <button type="button" className="px-2 py-1 rounded border hover:bg-gray-50 dark:hover:bg-gray-900 disabled:opacity-40" disabled={page >= totalPages} onClick={() => { const next = Math.min(totalPages, page + 1); setPage(next); syncUrl(filters, next); load(filters, next); }} aria-label="Next">›</button>
                             </div>
                         </nav>
                     )}
                 </>}
 
-                {/* CTA */}
                 <div className="w-full max-w-6xl px-4">
                     <div className="cta-card p-6 mt-6">
                         <h3 className="text-2xl font-semibold mb-1">{t('blocks.howWorks.title')}</h3>
@@ -289,7 +267,6 @@ export default function Home() {
                     </div>
                 </div>
 
-                {/* FAQ */}
                 <div className="w-full max-w-6xl px-4 grid grid-cols-1 md:grid-cols-3 gap-3 my-6">
                     <div className="faq-item p-4">
                         <div className="font-semibold mb-1">{t('blocks.safety.title')}</div>
@@ -328,8 +305,9 @@ export default function Home() {
                                 </ul>
                             </div>
                         </div>
-				)}
-                    </section>
-		</main>
+                    </div>
+                )}
+            </section>
+        </main>
     );
 } 
