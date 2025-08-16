@@ -32,8 +32,9 @@ jobs:
             cd "$REPO_DIR"
             git fetch --all --prune
             git reset --hard origin/main
-            docker compose -f docker-compose.prod.yml pull || true
-            docker compose -f docker-compose.prod.yml up -d --build
+            # Force rebuild without cache to pick fresh backend/frontend
+            docker compose -f docker-compose.prod.yml build --no-cache
+            docker compose -f docker-compose.prod.yml up -d --force-recreate
             # Diagnostics
             echo '--- docker ps ---'
             docker compose -f docker-compose.prod.yml ps || true
