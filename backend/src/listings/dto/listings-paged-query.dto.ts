@@ -1,4 +1,5 @@
 import { IsIn, IsOptional, IsString, IsInt, Min, Max } from 'class-validator';
+import { Type } from 'class-transformer';
 
 const actions = ['BUY', 'SELL'] as const;
 export type QueryAction = (typeof actions)[number];
@@ -36,11 +37,13 @@ export class ListingsPagedQueryDto {
   archived?: string;
 
   @IsOptional()
+  @Type(() => Number)
   @IsInt()
   @Min(1)
   page?: number;
 
   @IsOptional()
+  @Type(() => Number)
   @IsInt()
   @Min(1)
   @Max(100)
