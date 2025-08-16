@@ -34,4 +34,14 @@ jobs:
             git reset --hard origin/main
             docker compose -f docker-compose.prod.yml pull || true
             docker compose -f docker-compose.prod.yml up -d --build
+            # Diagnostics
+            echo '--- docker ps ---'
+            docker compose -f docker-compose.prod.yml ps || true
+            echo '--- backend logs (last 200) ---'
+            docker compose -f docker-compose.prod.yml logs backend --tail=200 || true
+            echo '--- curl backend health via host port ---'
+            (curl -sS -v http://127.0.0.1:3001/health || true)
+            echo '--- curl backend DB health via host port ---'
+            (curl -sS -v http://127.0.0.1:3001/health/db || true)
+            echo '--- done ---'
             docker system prune -f || true 
