@@ -240,13 +240,21 @@ export default function Home() {
                                     if (max > 1) add(max);
                                     return (
                                         <>
-                                            {pages.map((p, idx) => typeof p === 'string' ? (
-                                                <span key={`e-${idx}`} className="px-2 text-gray-500">{p}</span>
-                                            ) : (
-                                                <button key={p} type="button" onClick={() => { setPage(p); syncUrl(filters, p); load(filters, p); }} className={`${p === page ? 'bg-blue-600 text-white' : 'border hover:bg-gray-50 dark:hover:bg-gray-900'} px-3 py-1 rounded`}>
-                                                    {p}
-                                                </button>
-                                            )}
+                                            {pages.map((p, idx) => {
+                                                if (typeof p === 'string') {
+                                                    return <span key={`e-${idx}`} className="px-2 text-gray-500">{p}</span>;
+                                                }
+                                                return (
+                                                    <button
+                                                        key={p}
+                                                        type="button"
+                                                        onClick={() => { setPage(p as number); syncUrl(filters, p as number); load(filters, p as number); }}
+                                                        className={`${p === page ? 'bg-blue-600 text-white' : 'border hover:bg-gray-50 dark:hover:bg-gray-900'} px-3 py-1 rounded`}
+                                                    >
+                                                        {p}
+                                                    </button>
+                                                );
+                                            })}
                                         </>
                                     );
                                 })()}
