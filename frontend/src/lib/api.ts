@@ -61,31 +61,46 @@ export async function getListingsPaged(params?: ListingsQuery & { page?: number;
     if (IS_E2E) {
         return { items: [], total: 0, page: 1, limit: Number(params?.limit || 50) };
     }
-    const usp = new URLSearchParams();
-    if (params) {
-        Object.entries(params).forEach(([k, v]) => {
-            if (v === undefined || v === null) return;
-            if (Array.isArray(v)) v.filter(Boolean).forEach((vv) => usp.append(k, String(vv)));
-            else if (String(v).trim() !== '') usp.append(k, String(v));
-        });
-    }
-    const q = usp.toString();
-    const query = q ? `?${q}` : '';
-    const headers: Record<string, string> = {};
-    const token = getToken();
-    if (token) headers['Authorization'] = `Bearer ${token}`;
-    const res = await fetch(`${BASE_URL}/listings/paged${query}`, { cache: 'no-store', headers });
-    if (res.ok) return res.json();
-
-    // Фолбэк: если сервер ещё без /listings/paged — используем старый /listings
-    if (res.status === 404 || res.status === 405) {
-        const page = Math.max(1, Number(params?.page || 1));
-        const limit = Math.min(100, Math.max(1, Number(params?.limit || 50)));
-        const all = await getListings(params);
-        const start = (page - 1) * limit;
-        return { items: all.slice(start, start + limit), total: all.length, page, limit };
-    }
-    throw new Error('Failed to load listings');
+    try {
+        const usp = new URLSearchParams();
+        if (params) {
+            Object.entries(params).forEach(([k, v]) => {
+                if (v === undefined || v === null) return;
+                if (k === 'page' && Number(v) === 1) return;
+                if (k === 'limit' && Number(v) === 50) return;
+                if (Array.isArray(v)) v.filter(Boolean).forEach((vv) => usp.append(k, String(vv)));
+                else if (String(v).trim() !== '') usp.append(k, String(v));
+            });
+        }
+        const q = usp.toString();
+        const query = q ? `?${q}` : '';
+        const headers: Record<string, string> = {};
+        const token = getToken();
+        if (token) headers['Authorization'] = `Bearer ${token}`;
+        const res = await fetch(`${BASE_URL}/listings/paged${query}`, { cache: 'no-store', headers });
+        if (res.ok) return res.json();
+        if (res.status === 400) {
+            const usp2 = new URLSearchParams();
+            if (params) {
+                Object.entries(params).forEach(([k, v]) => {
+                    if (v === undefined || v === null) return;
+                    if (k === 'page' || k === 'limit') return;
+                    if (Array.isArray(v)) v.filter(Boolean).forEach((vv) => usp2.append(k, String(vv)));
+                    else if (String(v).trim() !== '') usp2.append(k, String(v));
+                });
+            }
+            const q2 = usp2.toString();
+            const query2 = q2 ? `?${q2}` : '';
+            const res2 = await fetch(`${BASE_URL}/listings/paged${query2}`, { cache: 'no-store', headers });
+            if (res2.ok) return res2.json();
+        }
+    } catch { }
+    // Полный фолбэк: берём /listings и пагинируем на клиенте
+    const page = Math.max(1, Number(params?.page || 1));
+    const limit = Math.min(100, Math.max(1, Number(params?.limit || 50)));
+    const all = await getListings(params);
+    const start = (page - 1) * limit;
+    return { items: all.slice(start, start + limit), total: all.length, page, limit };
 }
 
 export async function repostListing(id: string): Promise<ListingDto> {
