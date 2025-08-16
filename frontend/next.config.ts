@@ -22,7 +22,7 @@ const securityHeaders = [
     },
     {
         key: 'Content-Security-Policy',
-        value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' /api http://localhost:3001 http://127.0.0.1:3001; frame-ancestors 'none';"
+        value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https: http: data: blob:; frame-ancestors 'none';"
     }
 ];
 
@@ -37,7 +37,7 @@ const nextConfig: NextConfig = {
     },
     async rewrites() {
         return [
-            { source: '/api/:path*', destination: 'http://backend:3001/:path*' },
+            { source: '/api/:path*', destination: 'http://backend:3000/:path*' },
         ];
     },
 };
