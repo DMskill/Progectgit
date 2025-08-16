@@ -19,6 +19,9 @@ RUN npm ci --omit=dev
 # Copy built app and prisma schema
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/prisma ./prisma
-# Prisma client is in node_modules from prod install
+# Ensure generated Prisma client is present
+COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=builder /app/node_modules/@prisma/client ./node_modules/@prisma/client
+# Expose port and start
 EXPOSE 3000
 CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main"]
