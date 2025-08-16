@@ -18,6 +18,9 @@ type Filters = {
     method: '' | 'CASH' | 'CRYPTO' | 'BANK_TRANSFER' | 'GOODS';
 };
 
+const ACTIONS = new Set(['BUY', 'SELL']);
+const METHODS = new Set(['CASH', 'CRYPTO', 'BANK_TRANSFER', 'GOODS']);
+
 export default function Home() {
     const t = useTranslations();
     const router = useRouter();
@@ -34,16 +37,22 @@ export default function Home() {
     const PER_PAGE = 50;
 
     const totalPages = useMemo(() => Math.max(1, Math.ceil(total / PER_PAGE)), [total]);
-    const pagedItems = items; // теперь сервер уже отдаёт нужную страницу
+    const pagedItems = items; // сервер уже отдаёт нужную страницу
 
-    const initialFilters = useMemo<Filters>(() => ({
-        country: searchParams.get('country') ?? '',
-        city: searchParams.get('city') ?? '',
-        action: (searchParams.get('action') as Filters['action']) ?? '',
-        crypto: searchParams.get('crypto') ?? '',
-        seller: searchParams.get('seller') ?? '',
-        method: (searchParams.get('method') as Filters['method']) ?? '',
-    }), [searchParams]);
+    const initialFilters = useMemo<Filters>(() => {
+        const rawAction = searchParams.get('action') ?? '';
+        const action = ACTIONS.has(rawAction) ? (rawAction as Filters['action']) : '';
+        const rawMethod = searchParams.get('method') ?? '';
+        const method = METHODS.has(rawMethod) ? (rawMethod as Filters['method']) : '';
+        return {
+            country: searchParams.get('country') ?? '',
+            city: searchParams.get('city') ?? '',
+            action,
+            crypto: searchParams.get('crypto') ?? '',
+            seller: searchParams.get('seller') ?? '',
+            method,
+        };
+    }, [searchParams]);
 
     const [filters, setFilters] = useState<Filters>(initialFilters);
     const didInitRef = useRef(false);
@@ -52,10 +61,10 @@ export default function Home() {
         const obj: Record<string, string> = {};
         if (f.country.trim()) obj.country = f.country.trim();
         if (f.city.trim()) obj.city = f.city.trim();
-        if (f.action) obj.action = f.action;
+        if (f.action && ACTIONS.has(f.action)) obj.action = f.action;
         if (f.crypto.trim()) obj.crypto = f.crypto.trim();
         if (f.seller.trim()) obj.seller = f.seller.trim();
-        if (f.method) obj.method = f.method;
+        if (f.method && METHODS.has(f.method)) obj.method = f.method;
         return obj;
     };
 
@@ -71,8 +80,8 @@ export default function Home() {
     const load = useCallback(async (f?: Filters, pageOverride?: number) => {
         setLoading(true);
         try {
-            const targetPage = pageOverride ?? page;
-            const data = await getListingsPaged({ ...(buildParams(f ?? filters)), page: targetPage, limit: PER_PAGE });
+            const currentPage = Math.max(1, Number(pageOverride ?? page) || 1);
+            const data = await getListingsPaged({ ...(buildParams(f ?? filters)), page: currentPage, limit: PER_PAGE });
             setItems(data.items);
             setTotal(data.total);
         } catch {
@@ -84,23 +93,27 @@ export default function Home() {
     }, [filters, page]);
 
     const applyWith = (f: Filters) => {
-        // Применяем без изменения URL, чтобы не было навигации и потери ввода
-        setPage(1);
-        syncUrl(f, 1);
-        load(f, 1);
+        // Применяем без полной навигации
+        const pageNumber = 1;
+        setPage(pageNumber);
+        syncUrl(f, pageNumber);
+        load(f, pageNumber);
     };
 
     useEffect(() => {
         if (didInitRef.current) return;
         didInitRef.current = true;
-        setFilters(initialFilters);
+        // Нормализуем фильтры и грузим первую страницу
+        const normalized: Filters = initialFilters;
+        setFilters(normalized);
         setPage(1);
-        load(initialFilters);
+        load(normalized, 1);
     }, [initialFilters, load]);
 
     const apply = () => {
         const currentAction = actionSelectRef.current?.value as Filters['action'] | undefined;
-        const merged: Filters = { ...filters, action: (currentAction ?? filters.action) };
+        const nextAction = currentAction && ACTIONS.has(currentAction) ? currentAction : '';
+        const merged: Filters = { ...filters, action: nextAction };
         applyWith(merged);
     };
 
@@ -121,7 +134,7 @@ export default function Home() {
 
     return (
         <main className="min-h-screen hero-gradient">
-            <Header onCreated={() => load()} />
+            <Header onCreated={() => load(undefined, 1)} />
             <section className="py-6 flex flex-col items-center gap-6">
                 <div className="w-full max-w-6xl px-4">
                     <div className="mb-4">
@@ -147,13 +160,14 @@ export default function Home() {
                                 onSubmit={(e) => {
                                     e.preventDefault();
                                     const fd = new FormData(e.currentTarget as HTMLFormElement);
+                                    const rawAction = String(fd.get('action') ?? '');
                                     const next: Filters = {
                                         country: String(fd.get('country') ?? '').trim(),
                                         city: String(fd.get('city') ?? '').trim(),
-                                        action: (String(fd.get('action') ?? '') as Filters['action']),
+                                        action: (ACTIONS.has(rawAction) ? (rawAction as Filters['action']) : ''),
                                         crypto: String(fd.get('crypto') ?? '').trim(),
                                         seller: String(fd.get('seller') ?? '').trim(),
-                                        method: (String(fd.get('method') ?? '') as Filters['method']),
+                                        method: (METHODS.has(String(fd.get('method') ?? '')) ? (String(fd.get('method') ?? '') as Filters['method']) : ''),
                                     };
                                     setFilters(next);
                                     applyWith(next);
@@ -169,7 +183,8 @@ export default function Home() {
                                     <input name="city" className="ux-input ux-select focus-ux" placeholder={t('filter.city')} value={filters.city} onChange={e => setFilters(p => ({ ...p, city: e.target.value }))} />
                                     {/* 3. Покупка/Продажа */}
                                     <select name="action" ref={actionSelectRef} className="ux-select focus-ux" value={filters.action} onChange={e => {
-                                        const next = { ...filters, action: e.target.value as Filters['action'] };
+                                        const val = e.target.value as Filters['action'];
+                                        const next = { ...filters, action: (ACTIONS.has(val) ? val : '') };
                                         setFilters(next);
                                     }}>
                                         <option value="">{t('filter.actionAny')}</option>
@@ -181,7 +196,7 @@ export default function Home() {
                                     {/* 5. Продавец */}
                                     <input name="seller" className="ux-input focus-ux" placeholder={t('filter.seller')} value={filters.seller} onChange={e => setFilters(p => ({ ...p, seller: e.target.value }))} />
                                     {/* 6. Метод оплаты */}
-                                    <select name="method" className="ux-select focus-ux" value={filters.method} onChange={e => setFilters(p => ({ ...p, method: e.target.value as Filters['method'] }))}>
+                                    <select name="method" className="ux-select focus-ux" value={filters.method} onChange={e => setFilters(p => ({ ...p, method: (METHODS.has(e.target.value) ? (e.target.value as Filters['method']) : '') }))}>
                                         <option value="">{t('filter.method')}</option>
                                         <option value="CASH">{t('method.cash')}</option>
                                         <option value="CRYPTO">{t('method.crypto')}</option>
@@ -244,7 +259,7 @@ export default function Home() {
                                                 >
                                                     {p}
                                                 </button>
-                                            ))}
+                                            )}
                                         </>
                                     );
                                 })()}
@@ -313,9 +328,8 @@ export default function Home() {
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                )}
-            </section>
-        </main>
+				)}
+                    </section>
+		</main>
     );
 } 
