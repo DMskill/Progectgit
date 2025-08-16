@@ -29,6 +29,17 @@ export class ListingsService {
     return d;
   }
 
+  private normalizePage(input: any, def = 1): number {
+    const n = Number(input);
+    if (!Number.isFinite(n) || n < 1) return def;
+    return Math.floor(n);
+  }
+  private normalizeLimit(input: any, def = 50): number {
+    const n = Number(input);
+    const v = (!Number.isFinite(n) ? def : Math.floor(n));
+    return Math.max(1, Math.min(100, v));
+  }
+
   async findAll(
     query?: ListingsQueryDto,
     showContacts = false,
@@ -117,7 +128,7 @@ export class ListingsService {
           items: [],
           total: 0,
           page: 1,
-          limit: Number(query?.limit || 50),
+          limit: this.normalizeLimit(query?.limit, 50),
         };
       }
     } else {
@@ -151,9 +162,11 @@ export class ListingsService {
         else where.receiveType = query.method;
       }
     }
-    const page = Math.max(1, Number(query?.page || 1));
-    const limit = Math.min(100, Math.max(1, Number(query?.limit || 50)));
+
+    const page = this.normalizePage(query?.page, 1);
+    const limit = this.normalizeLimit(query?.limit, 50);
     const skip = (page - 1) * limit;
+
     const [total, data] = await Promise.all([
       this.prisma.listing.count({ where: where }),
       this.prisma.listing.findMany({

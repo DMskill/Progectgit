@@ -1,5 +1,4 @@
-import { IsIn, IsOptional, IsString, IsInt, Min, Max } from 'class-validator';
-import { Type } from 'class-transformer';
+import { IsIn, IsOptional, IsString } from 'class-validator';
 
 const actions = ['BUY', 'SELL'] as const;
 export type QueryAction = (typeof actions)[number];
@@ -36,16 +35,12 @@ export class ListingsPagedQueryDto {
   @IsString()
   archived?: string;
 
+  // Примем как строки, а число/диапазон нормализуем в сервисе
   @IsOptional()
-  @Type(() => Number)
-  @IsInt()
-  @Min(1)
-  page?: number;
+  @IsString()
+  page?: string;
 
   @IsOptional()
-  @Type(() => Number)
-  @IsInt()
-  @Min(1)
-  @Max(100)
-  limit?: number;
+  @IsString()
+  limit?: string;
 }
