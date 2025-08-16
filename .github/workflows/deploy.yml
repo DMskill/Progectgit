@@ -43,5 +43,13 @@ jobs:
             (curl -sS -v http://127.0.0.1:3001/health || true)
             echo '--- curl backend DB health via host port ---'
             (curl -sS -v http://127.0.0.1:3001/health/db || true)
+            echo '--- docker exec backend: env ---'
+            docker exec prop2p-backend sh -lc 'printenv | sort | sed -n "1,200p"' || true
+            echo '--- docker exec backend: ports ---'
+            docker exec prop2p-backend sh -lc 'ss -tulpen || netstat -tulpen || true' || true
+            echo '--- docker exec backend: curl localhost /health ---'
+            docker exec prop2p-backend sh -lc 'wget -qO- http://localhost:3000/health || curl -sS -v http://localhost:3000/health || true' || true
+            echo '--- curl frontend reverse proxy /api/health ---'
+            (curl -sS -v http://127.0.0.1:80/api/health || curl -sS -v http://127.0.0.1:3000/api/health || true)
             echo '--- done ---'
             docker system prune -f || true 

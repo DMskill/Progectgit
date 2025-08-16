@@ -24,14 +24,19 @@ services:
     environment:
       DATABASE_URL: postgres://${POSTGRES_USER:-prop2p}:${POSTGRES_PASSWORD:-prop2p}@db:5432/${POSTGRES_DB:-prop2p}
       NODE_ENV: production
-      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
+      PORT: 3000
+      CORS_ORIGINS: ${CORS_ORIGINS:-https://pro2p2.xyz,https://www.pro2p2.xyz}
+      PUBLIC_API_URL: ${PUBLIC_API_URL:-https://pro2p2.xyz/api}
+      PUBLIC_APP_URL: ${PUBLIC_APP_URL:-https://pro2p2.xyz}
+      JWT_SECRET: ${JWT_SECRET:-change-me-in-prod}
+      ADMIN_EMAILS: ${ADMIN_EMAILS:-d.mokronos@gmail.com,dmokronos@inbox.ru,pro2p2manager@gmail.com}
     ports:
       - "3001:3000"
     depends_on:
       db:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:3000/", "||", "exit", "1"]
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/health", "||", "exit", "1"]
       interval: 10s
       timeout: 5s
       retries: 5
