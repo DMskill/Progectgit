@@ -61,6 +61,11 @@
         "updated": "Profil aktualisiert",
         "mailSent": "Bestätigungs-E-Mail gesendet"
     },
+    "verified": {
+        "title": "E‑Mail bestätigt",
+        "desc": "Ihre E‑Mail wurde erfolgreich verifiziert. Sie können ProP2P nun weiter nutzen.",
+        "homeBtn": "Zur Startseite"
+    },
     "filter": {
         "country": "Land",
         "city": "Stadt",

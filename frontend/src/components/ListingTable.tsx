@@ -157,7 +157,7 @@ export default function ListingTable({ items, onEdited, onDeleted, showRowAction
                     <HeaderCell className="w-[7%] text-left">{t('colCrypto')}</HeaderCell>
                     <HeaderCell className="w-[9%] text-right">{t('colAmount')}</HeaderCell>
                     <HeaderCell className="w-[8%] text-right">{t('colMinTrade')}</HeaderCell>
-                    <HeaderCell className="w-[11%] text-left">{t('colReceive')}</HeaderCell>
+                    <HeaderCell className="w-[11%] text-left">{t('colGiveReceive')}</HeaderCell>
                     <HeaderCell className={`${methodColWidth} text-left`}>{t('colMethod')}</HeaderCell>
                     {!hideSeller && (
                         <HeaderCell className="w-[9%] text-left">{sellerHeader ?? t('colSeller')}</HeaderCell>
@@ -190,7 +190,7 @@ export default function ListingTable({ items, onEdited, onDeleted, showRowAction
                                 <Cell className="w-1/2 md:w-[7%]"><CellButton title={t('colCrypto')} text={i.cryptoSymbol} /></Cell>
                                 <Cell className="w-1/2 md:w-[9%] text-right"><CellButton title={t('colAmount')} text={i.amountTotal} className="text-right" /></Cell>
                                 <Cell className="w-1/2 md:w-[8%] text-right"><CellButton title={t('colMinTrade')} text={i.minTrade} className="text-right" /></Cell>
-                                <Cell className="w-full md:w-[11%]"><CellButton title={t('colReceive')} text={`${i.receiveAsset ?? '-'} ${i.receiveAmount ?? ''}`} /></Cell>
+                                <Cell className="w-full md:w-[11%]"><CellButton title={t('colGiveReceive')} text={`${i.receiveAsset ?? '-'} ${i.receiveAmount ?? ''}`} /></Cell>
                                 <Cell className={`w-1/2 ${methodColWidth}`}>
                                     {i.receiveTypes && i.receiveTypes.length > 0 ? (
                                         <CellButton

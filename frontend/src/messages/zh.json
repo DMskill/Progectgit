@@ -61,6 +61,11 @@
         "updated": "资料已更新",
         "mailSent": "确认邮件已发送"
     },
+    "verified": {
+        "title": "邮箱已确认",
+        "desc": "您的邮箱已成功验证。现在可以继续使用 ProP2P。",
+        "homeBtn": "返回主页"
+    },
     "filter": {
         "country": "国家",
         "city": "城市",

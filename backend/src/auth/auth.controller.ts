@@ -7,7 +7,9 @@ import {
   UseGuards,
   Req,
   Patch,
+  Res,
 } from '@nestjs/common';
+import { Response } from 'express';
 import { Throttle } from '@nestjs/throttler';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
@@ -30,8 +32,10 @@ export class AuthController {
   // Подтверждение почты: 20 запросов в минуту (безопасно)
   @Get('verify')
   @Throttle({ default: { ttl: 60_000, limit: 20 } })
-  async verify(@Query('token') token: string) {
-    return this.auth.verify(token);
+  async verify(@Query('token') token: string, @Res() res: Response) {
+    await this.auth.verify(token);
+    const appUrl = process.env.PUBLIC_APP_URL || 'http://localhost:3000';
+    return res.redirect(`${appUrl.replace(/\/$/, '')}/auth/verified?success=1`);
   }
 
   // Логин: 10 запросов в минуту на IP

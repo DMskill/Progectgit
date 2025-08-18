@@ -195,7 +195,7 @@ export default function CreateListingModal({ onCreated }: { onCreated: (created?
                                         </div>
                                     )}
                                 </div>
-                                <input className={inputCls} placeholder={t('modal.receiveAssetPh')} value={form.receiveAsset} onChange={e => update('receiveAsset', e.target.value)} />
+                                <input className={inputCls} placeholder={t('modal.giveReceiveAssetPh')} value={form.receiveAsset} onChange={e => update('receiveAsset', e.target.value)} />
                                 <input inputMode="decimal" className={inputCls} placeholder={t('modal.receiveAmountPh')} value={form.receiveAmount} onChange={e => update('receiveAmount', sanitizeDecimalInput(e.target.value, MAX_DECIMALS))} onBlur={e => update('receiveAmount', formatDecimalForBlur(e.target.value, MAX_DECIMALS, MIN_DECIMALS_DISPLAY))} />
                                 <input className={inputCls} placeholder={t('modal.sellerEmailPh')} value={form.contact} onChange={e => update('contact', e.target.value)} />
                                 <div className="md:col-span-2">

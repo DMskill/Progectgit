@@ -26,9 +26,19 @@ export class MailerService {
 
   async sendVerificationEmail(to: string, link: string) {
     this.ensureTransporter();
-    const subject = 'Verify your email';
-    const text = `Please verify your email by clicking the link: ${link}`;
-    const html = `<p>Please verify your email by clicking the link:</p><p><a href="${link}">${link}</a></p>`;
+    const subject = 'Confirm your email for ProP2P';
+    const text =
+      `You created an account on ProP2P.\n` +
+      `To confirm your email, open this link: ${link}\n` +
+      `If you did not request this, just ignore this message.`;
+    const html = `
+      <p>You created an account on <strong>ProP2P</strong>.</p>
+      <p>To confirm your email, please click the button below:</p>
+      <p><a href="${link}" style="
+        display:inline-block;padding:10px 16px;background:#2563eb;color:#ffffff;
+        text-decoration:none;border-radius:6px;">Confirm email</a></p>
+      <p>If you did not request this action, you can safely ignore this message.</p>
+    `;
 
     if (!this.transporter) {
       console.log(`[DEV EMAIL] To: ${to}\nSubject: ${subject}\n${text}`);
@@ -41,6 +51,9 @@ export class MailerService {
       subject,
       text,
       html,
+      headers: {
+        'Auto-Submitted': 'auto-generated',
+      },
     });
     return { sent: true };
   }

@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState, useCallback, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import Header from '@/components/Header';
 import ListingTable from '@/components/ListingTable';
-import { getListings, ListingDto } from '@/lib/api';
+import { getListingsPaged, ListingDto } from '@/lib/api';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import CountrySelect from '@/components/CountrySelect';
 import Link from 'next/link';
@@ -83,9 +83,11 @@ export default function Home() {
     const load = useCallback(async (f?: Filters, pageOverride?: number) => {
         setLoading(true);
         try {
-            const all = await getListings(buildParams(f ?? filters));
-            setItems(all);
-            setTotal(all.length);
+            const base = buildParams(f ?? filters);
+            const params = { ...base, page: Number(pageOverride ?? page), limit: PER_PAGE } as unknown as Parameters<typeof getListingsPaged>[0];
+            const all = await getListingsPaged(params);
+            setItems(all.items);
+            setTotal(all.total);
             const targetPage = Math.max(1, Number(pageOverride ?? page) || 1);
             setPage(targetPage);
         } catch {
