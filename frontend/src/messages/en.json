@@ -145,6 +145,20 @@
         "terms": "Terms of Service",
         "privacy": "Privacy Policy"
     },
+    "termsPage": {
+        "title": "Terms of Service",
+        "p1": "ProP2P is a classifieds board for peer‑to‑peer crypto deals. We do not escrow funds or act as an intermediary.",
+        "li1": "Users are solely responsible for their actions and compliance with local laws.",
+        "li2": "Illegal content, spam and fraud are prohibited.",
+        "li3": "We may remove content that violates rules and suspend abusive accounts."
+    },
+    "privacyPage": {
+        "title": "Privacy Policy",
+        "p1": "We collect only the data necessary to operate the service (account email and basic profile). We do not sell personal data.",
+        "li1": "Your email is used for authentication and notifications.",
+        "li2": "You may request deletion of your account via support.",
+        "li3": "Cookies/localStorage may be used to keep your session."
+    },
     "safetyModal": {
         "title": "Safety tips",
         "item1": "Meet in public places or verify identity via video call.",

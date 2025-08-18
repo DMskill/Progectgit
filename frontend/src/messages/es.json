@@ -135,6 +135,24 @@
     "list": {
         "countRange": "Mostrando {from}–{to} de {total}"
     },
+    "footer": {
+        "terms": "Términos de servicio",
+        "privacy": "Política de privacidad"
+    },
+    "termsPage": {
+        "title": "Términos de servicio",
+        "p1": "ProP2P es un tablón de anuncios para operaciones P2P con criptomonedas. No custodiamos fondos ni actuamos como intermediarios.",
+        "li1": "El usuario es responsable de sus acciones y del cumplimiento de la ley local.",
+        "li2": "Se prohíbe contenido ilegal, spam y fraude.",
+        "li3": "Podemos eliminar contenido que viole las reglas y suspender cuentas abusivas."
+    },
+    "privacyPage": {
+        "title": "Política de privacidad",
+        "p1": "Recogemos solo los datos necesarios (correo de la cuenta y perfil básico) y no vendemos datos personales.",
+        "li1": "El correo se usa para autenticación y notificaciones.",
+        "li2": "Puedes solicitar borrar la cuenta vía soporte.",
+        "li3": "Cookies/localStorage pueden usarse para mantener la sesión."
+    },
     "safetyModal": {
         "title": "Consejos de seguridad",
         "item1": "Reúnete en lugares públicos o verifica identidad por videollamada.",

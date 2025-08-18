@@ -136,6 +136,24 @@
     "list": {
         "countRange": "Zeige {from}–{to} von {total}"
     },
+    "footer": {
+        "terms": "Nutzungsbedingungen",
+        "privacy": "Datenschutz"
+    },
+    "termsPage": {
+        "title": "Nutzungsbedingungen",
+        "p1": "ProP2P ist ein Kleinanzeigen‑Board für P2P‑Krypto‑Deals. Wir verwahren keine Gelder und sind kein Vermittler.",
+        "li1": "Nutzer sind selbst verantwortlich und halten lokale Gesetze ein.",
+        "li2": "Illegale Inhalte, Spam und Betrug sind verboten.",
+        "li3": "Wir können regelwidrige Inhalte entfernen und missbräuchliche Konten sperren."
+    },
+    "privacyPage": {
+        "title": "Datenschutz",
+        "p1": "Wir erheben nur notwendige Daten (Account‑E‑Mail, Basisprofil) und verkaufen keine personenbezogenen Daten.",
+        "li1": "E‑Mail wird für Anmeldung und Benachrichtigungen genutzt.",
+        "li2": "Sie können die Löschung des Kontos über den Support anfordern.",
+        "li3": "Cookies/localStorage können zur Sitzungsspeicherung verwendet werden."
+    },
     "safetyModal": {
         "title": "Sicherheitstipps",
         "item1": "Treffen Sie sich an öffentlichen Orten oder verifizieren Sie per Video.",
