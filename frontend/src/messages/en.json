@@ -49,6 +49,16 @@
     "colExpires": "Left",
     "tabActive": "Active",
     "tabArchived": "Archive",
+    "auth": {
+        "passwordMin": "Password (min 6)",
+        "verifySent": "Check your email to confirm your account.",
+        "devVerify": "Registration successful. For email confirmation (dev mode), open the link below."
+    },
+    "verified": {
+        "title": "Email confirmed",
+        "desc": "Your email has been successfully verified. You can now continue to use ProP2P.",
+        "homeBtn": "Go to homepage"
+    },
     "filter": {
         "country": "Country",
         "city": "City",

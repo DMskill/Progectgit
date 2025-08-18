@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 
 export default function SignIn() {
     const t = useTranslations();
+    const tAuth = useTranslations('auth');
     const router = useRouter();
     const locale = useLocale();
     const [email, setEmail] = useState('');
@@ -25,7 +26,6 @@ export default function SignIn() {
             if (!res.ok) throw new Error((await res.json()).message || 'Login failed');
             const data = await res.json();
             setToken(data.accessToken);
-            // Выполняем полную перезагрузку, чтобы хедер перечитал токен надёжно
             if (typeof window !== 'undefined') {
                 window.location.href = `/${locale}`;
                 return;
@@ -43,7 +43,7 @@ export default function SignIn() {
                 <h1 className="text-lg font-semibold">{t('signIn')}</h1>
                 {error && <div className="text-red-500 text-sm">{error}</div>}
                 <input className="w-full border rounded px-2 py-1 bg-white dark:bg-gray-900 text-black dark:text-white" placeholder={t('email')} value={email} onChange={e => setEmail(e.target.value)} />
-                <input type="password" className="w-full border rounded px-2 py-1 bg-white dark:bg-gray-900 text-black dark:text-white" placeholder={t('password')} value={password} onChange={e => setPassword(e.target.value)} />
+                <input type="password" className="w-full border rounded px-2 py-1 bg-white dark:bg-gray-900 text-black dark:text-white" placeholder={tAuth('passwordMin')} value={password} onChange={e => setPassword(e.target.value)} />
                 <div className="flex justify-end">
                     <button disabled={loading} onClick={submit} className="px-3 py-1 rounded bg-black text-white dark:bg-white dark:text-black">{t('signIn')}</button>
                 </div>
