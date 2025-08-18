@@ -210,7 +210,7 @@ export default function Home() {
                                 </div>
                                 <div className="flex gap-2 mt-3">
                                     <button type="submit" data-testid="apply-filters" className="btn-neon">{t('filter.apply')}</button>
-                                    <button type="button" data-testid="reset-filters" onClick={reset} className="px-3 py-1 rounded border hover:bg-gray-50 dark:hover:bg-gray-900 transition">{t('filter.reset')}</button>
+                                    <button type="button" data-testid="reset-filters" onClick={reset} className="btn-neon">{t('filter.reset')}</button>
                                 </div>
                             </form>
                         </div>
