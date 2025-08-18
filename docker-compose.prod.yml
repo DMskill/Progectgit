@@ -30,6 +30,13 @@ services:
       PUBLIC_APP_URL: ${PUBLIC_APP_URL:-https://pro2p2.xyz}
       JWT_SECRET: ${JWT_SECRET:-change-me-in-prod}
       ADMIN_EMAILS: ${ADMIN_EMAILS:-d.mokronos@gmail.com,dmokronos@inbox.ru,pro2p2manager@gmail.com}
+      # SMTP (SendPulse)
+      SMTP_HOST: smtp-pulse.com
+      SMTP_PORT: "465"
+      SMTP_SECURE: "true"
+      SMTP_USER: d.mokronos@gmail.com
+      SMTP_PASS: THfYDX75aP
+      MAIL_FROM: "ProP2P <no-reply@pro2p2.xyz>"
     ports:
       - "3001:3000"
     depends_on:
@@ -52,7 +59,6 @@ services:
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3001}
     ports:
       - "3000:3000"
-      - "80:3000"
     depends_on:
       - backend
 
