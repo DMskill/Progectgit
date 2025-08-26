@@ -5,6 +5,8 @@ import { useTranslations, useLocale } from 'next-intl';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import ThemeToggle from '@/components/ThemeToggle';
 import CreateListingModal from '@/components/CreateListingModal';
+import SignUpModal from '@/components/SignUpModal';
+import SignInModal from '@/components/SignInModal';
 import { clearToken, getToken } from '@/lib/auth';
 import { useEffect, useMemo, useState } from 'react';
 import { getMe } from '@/lib/api';
@@ -68,6 +70,8 @@ export default function Header({ onCreated }: { onCreated: () => void }) {
                         <span className="text-sm opacity-70 hidden md:inline">{userEmail}</span>
                         <button onClick={logout} className="px-3 py-1 rounded border text-sm hover:bg-gray-50 dark:hover:bg-gray-900 transition" data-testid="logout-btn">{t('logout')}</button>
                         <CreateListingModal onCreated={onCreated} />
+import SignUpModal from '@/components/SignUpModal';
+import SignInModal from '@/components/SignInModal';
                     </>
                 ) : (
                     <>
