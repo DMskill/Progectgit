@@ -1,0 +1,57 @@
+sudo nano /opt/prop2p/docker-compose.prod.ymlservices:
+  db:
+    image: postgres:15
+    container_name: prop2p-db
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-prop2p}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-prop2p}
+      POSTGRES_DB: ${POSTGRES_DB:-prop2p}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      target: runtime
+    container_name: prop2p-backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER:-prop2p}:${POSTGRES_PASSWORD:-prop2p}@db:5432/${POSTGRES_DB:-prop2p}
+      NODE_ENV: production
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3000}
+      PUBLIC_API_URL: https://pro2p2.xyz/api
+      PUBLIC_APP_URL: https://pro2p2.xyz
+      ADMIN_EMAILS: d.mokronos@gmail.com,dmokronos@inbox.ru,pro2p2manager@gmail.com
+      PORT: 3001
+    ports:
+      - "3001:3001"
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3001/ || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  frontend:
+    build:
+      context: ./frontend
+      target: runner
+    container_name: prop2p-frontend
+    restart: unless-stopuuuu    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:3001}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:
