@@ -1,0 +1,167 @@
+{
+    "hello": "Hallo Welt!",
+    "brand": "ProP2P",
+    "postAd": "Anzeige aufgeben",
+    "signIn": "Anmelden",
+    "signin": "Anmelden",
+    "signUp": "Registrieren",
+    "signup": "Registrieren",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "searchPlaceholder": "Anzeigen, Assets, Verkäufer suchen…",
+    "search": "Suchen",
+    "colCountry": "Land",
+    "colCity": "Stadt",
+    "colAction": "Aktion",
+    "colBuySell": "Kauf/Verkauf",
+    "colDescription": "Kommentar",
+    "colCrypto": "Krypto",
+    "colAmount": "Menge",
+    "colMinTrade": "Min. Handel",
+    "colReceive": "Erhalte/Gebe",
+    "colGiveReceive": "Erhalte/Gebe",
+    "colMethod": "Methode",
+    "colSeller": "Verkäufer",
+    "colContact": "Kontakt",
+    "colRating": "Bewertung",
+    "colDate": "Datum",
+    "empty": "Noch keine Anzeigen",
+    "action": {
+        "buy": "Kaufen",
+        "sell": "Verkaufen"
+    },
+    "method": {
+        "cash": "Bar",
+        "crypto": "Krypto",
+        "bank": "Banküberweisung",
+        "goods": "Waren"
+    },
+    "colActions": "Aktionen",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "profileTitle": "Profil",
+    "myListings": "Meine Anzeigen",
+    "logout": "Abmelden",
+    "toListings": "Zu den Anzeigen",
+    "daysCount": "{count, plural, one {# Tag} other {# Tage}}",
+    "archive": "Archiv",
+    "repost": "Erneut veröffentlichen",
+    "colExpires": "Verbleibt",
+    "tabActive": "Aktiv",
+    "tabArchived": "Archiv",
+    "profile": {
+        "namePh": "Name",
+        "nickPh": "Spitzname",
+        "saveProfile": "Profil speichern",
+        "currentPassPh": "Aktuelles Passwort",
+        "newPassPh": "Neues Passwort",
+        "changePass": "Passwort ändern",
+        "newEmailPh": "Neue E-Mail",
+        "changeEmail": "E-Mail ändern",
+        "updated": "Profil aktualisiert",
+        "mailSent": "Bestätigungs-E-Mail gesendet"
+    },
+    "verified": {
+        "title": "E‑Mail bestätigt",
+        "desc": "Ihre E‑Mail wurde erfolgreich verifiziert. Sie können ProP2P nun weiter nutzen.",
+        "homeBtn": "Zur Startseite"
+    },
+    "filter": {
+        "country": "Land",
+        "city": "Stadt",
+        "crypto": "Krypto",
+        "actionAny": "Kauf/Verkauf",
+        "seller": "Verkäufer",
+        "apply": "Anwenden",
+        "reset": "Zurücksetzen",
+        "method": "Zahlungsmethode"
+    },
+    "modal": {
+        "title": "Anzeige erstellen",
+        "editTitle": "Anzeige bearbeiten",
+        "countryCodePh": "Ländercode (RU)",
+        "countryPh": "Land",
+        "regionPh": "Region/Stadt",
+        "cryptoPh": "Krypto (BTC/USDT)",
+        "amountTotalPh": "Gesamtmenge",
+        "minTradePh": "Min. Handel",
+        "receiveType": {
+            "cash": "Bar",
+            "crypto": "Krypto",
+            "bank": "Banküberweisung",
+            "goods": "Waren"
+        },
+        "action": {
+            "buy": "Kaufen",
+            "sell": "Verkaufen"
+        },
+        "actionSelect": "Aktion wählen",
+        "receiveTypeSelect": "Methode wählen",
+        "receiveAssetPh": "Erhalte/Gebe (Fiat, Krypto, Waren)",
+        "giveReceiveAssetPh": "Erhalte/Gebe (Fiat, Krypto, Waren)",
+        "receiveAmountPh": "Menge",
+        "sellerEmailPh": "Kontakt",
+        "sellerNamePh": "Name",
+        "descriptionPh": "Kommentar",
+        "commentPh": "Kommentar (bis 500 Zeichen)",
+        "cancel": "Abbrechen",
+        "save": "Speichern",
+        "error": "Erstellung fehlgeschlagen"
+    },
+    "hero": {
+        "title": "Transparente P2P‑Deals in Ihrer Nähe",
+        "subtitle": "Tauschen Sie Krypto direkt mit Personen in Ihrer Nähe — ohne Vermittler und ohne versteckte Bedingungen. Schnell, einfach, zuverlässig."
+    },
+    "blocks": {
+        "howWorks": {
+            "title": "Wie funktioniert es?",
+            "find": "Gegenpartei finden: Filter anwenden → per E‑Mail/Messenger kontaktieren → Details bestätigen.",
+            "post": "Anzeige aufgeben: anmelden → Anzeige erstellen → Rückmeldungen erhalten.",
+            "tip": "Hinweis: Zahlungseingang prüfen und keine Vorkasse an Unbekannte senden."
+        },
+        "safety": {
+            "title": "Ist das sicher?",
+            "short": "ProP2P ist ein Kleinanzeigen‑Board: Geschäfte laufen direkt zwischen Nutzern. Sicherheit hängt von Ihrem Handeln ab. Treffen Sie sich öffentlich oder verifizieren Sie per Video, vermeiden Sie Vorkasse, bestätigen Sie Gelder on‑chain/Bank, teilen Sie nie Seed‑Phrasen.",
+            "more": "Ausführliche Sicherheitstipps"
+        },
+        "contact": {
+            "title": "Wie kontaktiere ich Verkäufer/Käufer?",
+            "text": "Der Kontakt (E‑Mail/Messenger) steht in der Anzeige und ist nach dem Login sichtbar. Schreiben Sie und stimmen Sie Details ab."
+        },
+        "fees": {
+            "title": "Gebühren und Plattformkosten",
+            "text": "Gebühr pro Deal? Gebühr für Schaltung/Verlängerung? Abo für Limits? Nichts davon! Tauschen Sie Krypto frei und einfach – direkt mit Menschen."
+        }
+    },
+    "list": {
+        "countRange": "Zeige {from}–{to} von {total}"
+    },
+    "footer": {
+        "terms": "Nutzungsbedingungen",
+        "privacy": "Datenschutz"
+    },
+    "termsPage": {
+        "title": "Nutzungsbedingungen",
+        "p1": "ProP2P ist ein Kleinanzeigen‑Board für P2P‑Krypto‑Deals. Wir verwahren keine Gelder und sind kein Vermittler.",
+        "li1": "Nutzer sind selbst verantwortlich und halten lokale Gesetze ein.",
+        "li2": "Illegale Inhalte, Spam und Betrug sind verboten.",
+        "li3": "Wir können regelwidrige Inhalte entfernen und missbräuchliche Konten sperren."
+    },
+    "privacyPage": {
+        "title": "Datenschutz",
+        "p1": "Wir erheben nur notwendige Daten (Account‑E‑Mail, Basisprofil) und verkaufen keine personenbezogenen Daten.",
+        "li1": "E‑Mail wird für Anmeldung und Benachrichtigungen genutzt.",
+        "li2": "Sie können die Löschung des Kontos über den Support anfordern.",
+        "li3": "Cookies/localStorage können zur Sitzungsspeicherung verwendet werden."
+    },
+    "safetyModal": {
+        "title": "Sicherheitstipps",
+        "item1": "Treffen Sie sich an öffentlichen Orten oder verifizieren Sie per Video.",
+        "item2": "Keine Vorkasse an Unbekannte. Betrag in Teile splitten.",
+        "item3": "Netzwerk/Adresse und Zahlungseingang on‑chain/Bank prüfen, bevor Geld/Krypto übergeben wird.",
+        "item4": "Nur über die Kontakte aus der Anzeige kommunizieren. Externe Links ignorieren.",
+        "item5": "Keine Private Keys, Seed‑Phrase oder Codes teilen.",
+        "item6": "Vereinbarung schriftlich festhalten: Zeit, Betrag, Kurs, Ort.",
+        "item7": "Bei Zweifel – Deal abbrechen."
+    }
+}

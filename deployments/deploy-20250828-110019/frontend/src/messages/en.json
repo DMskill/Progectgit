@@ -1,0 +1,172 @@
+{
+    "hello": "Hello World!",
+    "brand": "ProP2P",
+    "postAd": "Post Ad",
+    "signIn": "Sign in",
+    "signin": "Sign in",
+    "signUp": "Sign up",
+    "signup": "Sign up",
+    "email": "Email",
+    "password": "Password",
+    "searchPlaceholder": "Search listings, assets, sellers…",
+    "search": "Search",
+    "colCountry": "Country",
+    "colCity": "City",
+    "colAction": "Action",
+    "colBuySell": "Buy/Sell",
+    "colDescription": "Comment",
+    "colCrypto": "Crypto",
+    "colAmount": "Amount",
+    "colMinTrade": "Min. trade",
+    "colReceive": "Receive/Give",
+    "colGiveReceive": "Receive/Give",
+    "colMethod": "Method",
+    "colSeller": "Seller",
+    "colContact": "Contact",
+    "colRating": "Rating",
+    "colDate": "Date",
+    "empty": "No listings yet",
+    "action": {
+        "buy": "Buy",
+        "sell": "Sell"
+    },
+    "method": {
+        "cash": "Cash",
+        "crypto": "Crypto",
+        "bank": "Bank transfer",
+        "goods": "Goods"
+    },
+    "colActions": "Actions",
+    "edit": "Edit",
+    "delete": "Delete",
+    "profileTitle": "Profile",
+    "myListings": "My listings",
+    "logout": "Logout",
+    "toListings": "To listings",
+    "daysCount": "{count, plural, one {# day} other {# days}}",
+    "archive": "Archive",
+    "repost": "Repost",
+    "colExpires": "Left",
+    "tabActive": "Active",
+    "tabArchived": "Archive",
+    "auth": {
+        "passwordMin": "Password (min 6)",
+        "verifySent": "Check your email to confirm your account.",
+        "devVerify": "Registration successful. For email confirmation (dev mode), open the link below."
+    },
+    "verified": {
+        "title": "Email confirmed",
+        "desc": "Your email has been successfully verified. You can now continue to use ProP2P.",
+        "homeBtn": "Go to homepage"
+    },
+    "filter": {
+        "country": "Country",
+        "city": "City",
+        "crypto": "Crypto",
+        "actionAny": "Buy/Sell",
+        "seller": "Seller",
+        "apply": "Apply",
+        "reset": "Reset",
+        "method": "Payment method"
+    },
+    "loading": "Loading…",
+    "modal": {
+        "title": "Create listing",
+        "editTitle": "Edit listing",
+        "countryCodePh": "Country code (RU)",
+        "countryPh": "Country",
+        "regionPh": "Region/City",
+        "cryptoPh": "Crypto (BTC/USDT)",
+        "amountTotalPh": "Total amount",
+        "minTradePh": "Min trade",
+        "receiveType": {
+            "cash": "Cash",
+            "crypto": "Crypto",
+            "bank": "Bank transfer",
+            "goods": "Goods"
+        },
+        "action": {
+            "buy": "Buy",
+            "sell": "Sell"
+        },
+        "actionSelect": "Select action",
+        "receiveTypeSelect": "Select method",
+        "receiveAssetPh": "Receive/Give (fiat, crypto, goods)",
+        "receiveAmountPh": "How much to receive",
+        "sellerEmailPh": "Contact",
+        "sellerNamePh": "Name",
+        "descriptionPh": "Comment",
+        "commentPh": "Comment (up to 500 chars)",
+        "cancel": "Cancel",
+        "save": "Save",
+        "error": "Failed to create listing"
+    },
+    "hero": {
+        "title": "Transparent P2P deals near you",
+        "subtitle": "Exchange crypto directly with people nearby — no intermediaries or hidden terms. Fast, simple and reliable."
+    },
+    "profile": {
+        "namePh": "Name",
+        "nickPh": "Nickname",
+        "saveProfile": "Save profile",
+        "currentPassPh": "Current password",
+        "newPassPh": "New password",
+        "changePass": "Change password",
+        "newEmailPh": "New email",
+        "changeEmail": "Change email",
+        "updated": "Profile updated",
+        "mailSent": "We sent a confirmation email"
+    },
+    "blocks": {
+        "howWorks": {
+            "title": "How it works?",
+            "find": "Find a counterparty: apply filters → contact via email/messenger → confirm the details.",
+            "post": "Post a listing: sign in → create a listing → get responses.",
+            "tip": "Tip: verify incoming funds and never send prepayment to strangers."
+        },
+        "safety": {
+            "title": "Is it safe?",
+            "short": "ProP2P is a classifieds board: deals are peer‑to‑peer between users. Your safety depends on your actions. Meet in public or verify over video, avoid prepayments, confirm funds on-chain/bank, never share seed phrases.",
+            "more": "Full safety tips"
+        },
+        "contact": {
+            "title": "How to contact a seller/buyer?",
+            "text": "The contact (email/messenger) is in the listing and available after sign‑in. Write and agree on the details."
+        },
+        "fees": {
+            "title": "Fees and platform pricing",
+            "text": "Deal fee? Listing or renewal fee? Subscription to remove limits? None of that! Trade crypto freely and simply — directly with people."
+        }
+    },
+    "list": {
+        "countRange": "Showing {from}–{to} of {total}"
+    },
+    "footer": {
+        "terms": "Terms of Service",
+        "privacy": "Privacy Policy"
+    },
+    "termsPage": {
+        "title": "Terms of Service",
+        "p1": "ProP2P is a classifieds board for peer‑to‑peer crypto deals. We do not escrow funds or act as an intermediary.",
+        "li1": "Users are solely responsible for their actions and compliance with local laws.",
+        "li2": "Illegal content, spam and fraud are prohibited.",
+        "li3": "We may remove content that violates rules and suspend abusive accounts."
+    },
+    "privacyPage": {
+        "title": "Privacy Policy",
+        "p1": "We collect only the data necessary to operate the service (account email and basic profile). We do not sell personal data.",
+        "li1": "Your email is used for authentication and notifications.",
+        "li2": "You may request deletion of your account via support.",
+        "li3": "Cookies/localStorage may be used to keep your session."
+    },
+    "safetyModal": {
+        "title": "Safety tips",
+        "item1": "Meet in public places or verify identity via video call.",
+        "item2": "Do not prepay strangers. Split the amount into parts.",
+        "item3": "Check network/address and confirm funds on-chain/bank before handing over cash/crypto.",
+        "item4": "Communicate only via contacts from the listing. Ignore external links and requests.",
+        "item5": "Never share private keys, seed phrase or verification codes.",
+        "item6": "Write down the agreement: time, amount, rate, place.",
+        "item7": "If in doubt — stop the deal."
+    }
+}

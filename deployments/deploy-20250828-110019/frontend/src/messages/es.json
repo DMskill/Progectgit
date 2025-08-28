@@ -1,0 +1,166 @@
+{
+    "hello": "¡Hola Mundo!",
+    "brand": "ProP2P",
+    "postAd": "Publicar",
+    "signIn": "Iniciar sesión",
+    "signin": "Iniciar sesión",
+    "signUp": "Registrarse",
+    "signup": "Registrarse",
+    "email": "Email",
+    "password": "Contraseña",
+    "searchPlaceholder": "Buscar anuncios, activos, vendedores…",
+    "search": "Buscar",
+    "colCountry": "País",
+    "colCity": "Ciudad",
+    "colAction": "Acción",
+    "colBuySell": "Compra/Venta",
+    "colDescription": "Comentario",
+    "colCrypto": "Cripto",
+    "colAmount": "Monto",
+    "colMinTrade": "Mín. operación",
+    "colReceive": "Recibo/Entrego",
+    "colGiveReceive": "Recibo/Entrego",
+    "colMethod": "Método",
+    "colSeller": "Vendedor",
+    "colContact": "Contacto",
+    "colRating": "Valoración",
+    "colDate": "Fecha",
+    "empty": "Aún no hay anuncios",
+    "action": {
+        "buy": "Compra",
+        "sell": "Venta"
+    },
+    "method": {
+        "cash": "Efectivo",
+        "crypto": "Cripto",
+        "bank": "Transferencia bancaria",
+        "goods": "Bienes"
+    },
+    "colActions": "Acciones",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "profileTitle": "Perfil",
+    "myListings": "Mis anuncios",
+    "logout": "Salir",
+    "toListings": "A los anuncios",
+    "daysCount": "{count, plural, one {# día} other {# días}}",
+    "archive": "Archivo",
+    "repost": "Republicar",
+    "colExpires": "Queda",
+    "tabActive": "Activos",
+    "tabArchived": "Archivo",
+    "profile": {
+        "namePh": "Nombre",
+        "nickPh": "Apodo",
+        "saveProfile": "Guardar perfil",
+        "currentPassPh": "Contraseña actual",
+        "newPassPh": "Nueva contraseña",
+        "changePass": "Cambiar contraseña",
+        "newEmailPh": "Nuevo correo",
+        "changeEmail": "Cambiar correo",
+        "updated": "Perfil actualizado",
+        "mailSent": "Hemos enviado un correo de confirmación"
+    },
+    "verified": {
+        "title": "Correo confirmado",
+        "desc": "Tu correo ha sido verificado correctamente. Ya puedes seguir usando ProP2P.",
+        "homeBtn": "Ir a la página principal"
+    },
+    "filter": {
+        "country": "País",
+        "city": "Ciudad",
+        "crypto": "Cripto",
+        "actionAny": "Compra/Venta",
+        "seller": "Vendedor",
+        "apply": "Aplicar",
+        "reset": "Restablecer",
+        "method": "Método de pago"
+    },
+    "modal": {
+        "title": "Crear anuncio",
+        "editTitle": "Editar anuncio",
+        "countryCodePh": "Código de país (RU)",
+        "countryPh": "País",
+        "regionPh": "Región/Ciudad",
+        "cryptoPh": "Cripto (BTC/USDT)",
+        "amountTotalPh": "Monto total",
+        "minTradePh": "Mín. operación",
+        "receiveType": {
+            "cash": "Efectivo",
+            "crypto": "Cripto",
+            "bank": "Transferencia bancaria",
+            "goods": "Bienes"
+        },
+        "action": {
+            "buy": "Compra",
+            "sell": "Venta"
+        },
+        "actionSelect": "Seleccionar acción",
+        "receiveTypeSelect": "Seleccionar método",
+        "receiveAssetPh": "Recibo/Entrego (fiat, cripto, bienes)",
+        "receiveAmountPh": "Cuánto recibir",
+        "sellerEmailPh": "Contacto",
+        "sellerNamePh": "Nombre",
+        "descriptionPh": "Comentario",
+        "commentPh": "Comentario (hasta 500)",
+        "cancel": "Cancelar",
+        "save": "Guardar",
+        "error": "Error al crear"
+    },
+    "hero": {
+        "title": "Operaciones P2P transparentes cerca de ti",
+        "subtitle": "Intercambia criptomonedas directamente con personas cercanas — sin intermediarios ni condiciones ocultas. Rápido, simple y fiable."
+    },
+    "blocks": {
+        "howWorks": {
+            "title": "¿Cómo funciona?",
+            "find": "Encontrar contraparte: aplica filtros → contacta por email/mensajero → confirma los detalles.",
+            "post": "Publicar anuncio: inicia sesión → crea un anuncio → recibe respuestas.",
+            "tip": "Consejo: verifica la recepción de fondos y no hagas prepago a desconocidos."
+        },
+        "safety": {
+            "title": "¿Es seguro?",
+            "short": "ProP2P es un tablón de anuncios: los tratos son directos entre usuarios. Tu seguridad depende de tus acciones. Reúnete en lugares públicos o verifica por video, evita prepagos, confirma fondos en cadena/banco, nunca compartas tu seed.",
+            "more": "Consejos de seguridad"
+        },
+        "contact": {
+            "title": "¿Cómo contactar al vendedor/comprador?",
+            "text": "El contacto (email/mensajero) está en el anuncio y se muestra tras iniciar sesión. Escribe y acuerda los detalles."
+        },
+        "fees": {
+            "title": "Comisiones y pagos de la plataforma",
+            "text": "¿Comisión por operación? ¿Pago por publicar o renovar? ¿Suscripción para quitar límites? ¡Nada de eso! Intercambia cripto libre y fácilmente, directamente con personas."
+        }
+    },
+    "list": {
+        "countRange": "Mostrando {from}–{to} de {total}"
+    },
+    "footer": {
+        "terms": "Términos de servicio",
+        "privacy": "Política de privacidad"
+    },
+    "termsPage": {
+        "title": "Términos de servicio",
+        "p1": "ProP2P es un tablón de anuncios para operaciones P2P con criptomonedas. No custodiamos fondos ni actuamos como intermediarios.",
+        "li1": "El usuario es responsable de sus acciones y del cumplimiento de la ley local.",
+        "li2": "Se prohíbe contenido ilegal, spam y fraude.",
+        "li3": "Podemos eliminar contenido que viole las reglas y suspender cuentas abusivas."
+    },
+    "privacyPage": {
+        "title": "Política de privacidad",
+        "p1": "Recogemos solo los datos necesarios (correo de la cuenta y perfil básico) y no vendemos datos personales.",
+        "li1": "El correo se usa para autenticación y notificaciones.",
+        "li2": "Puedes solicitar borrar la cuenta vía soporte.",
+        "li3": "Cookies/localStorage pueden usarse para mantener la sesión."
+    },
+    "safetyModal": {
+        "title": "Consejos de seguridad",
+        "item1": "Reúnete en lugares públicos o verifica identidad por videollamada.",
+        "item2": "No hagas prepago a desconocidos. Divide el monto en partes.",
+        "item3": "Verifica red/dirección y la llegada de fondos en cadena/banco antes de entregar efectivo/cripto.",
+        "item4": "Comunica solo por los contactos del anuncio. Ignora enlaces y solicitudes externas.",
+        "item5": "No compartas claves privadas, seed ni códigos de verificación.",
+        "item6": "Deja por escrito el acuerdo: hora, monto, tasa, lugar.",
+        "item7": "Si dudas, detén el trato."
+    }
+}
